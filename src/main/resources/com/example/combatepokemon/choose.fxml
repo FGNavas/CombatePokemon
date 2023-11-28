@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="632.0" styleClass="choose-background" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.combatepokemon.Controllers.ChooseController">
+    <children>
+      <Label fx:id="seleccionJugador" alignment="TOP_CENTER" contentDisplay="TOP" prefWidth="931.0" text="JUGADOR 1 ELIGE TU POKEMON" textAlignment="RIGHT">
+         <font>
+            <Font name="Arial" size="38.0" />
+         </font>
+      </Label>
+        <ScrollPane fx:id="scroll" hbarPolicy="NEVER" layoutX="397.0" layoutY="40.0" prefHeight="570.0" prefWidth="534.0" styleClass="transparent">
+            <content>
+                <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                    <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                    </rowConstraints>
+                </GridPane>
+            </content>
+        </ScrollPane>
+        <AnchorPane layoutX="21.0" layoutY="42.0" prefHeight="590.0" prefWidth="359.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="21.0" AnchorPane.topAnchor="42.0">
+            <children>
+                <VBox fx:id="pokemonSeleccionado" alignment="CENTER" layoutX="9.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="570.0" prefWidth="350.0" stylesheets="@style.css">
+                    <children>
+                        <HBox prefHeight="45.0" prefWidth="277.0">
+                            <children>
+                                <Label fx:id="nombrePokemon" prefHeight="43.0" prefWidth="210.0" text="Pokemon" textFill="WHITE">
+                                    <font>
+                                        <Font name="FontAwesome" size="36.0" />
+                                    </font>
+                                </Label>
+                        <ImageView fx:id="logoPokeCH" fitHeight="43.0" fitWidth="132.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../TipoLogo/water.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets right="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                            </children>
+                            <VBox.margin>
+                                <Insets left="20.0" top="30.0" />
+                            </VBox.margin>
+                        </HBox>
+                        <ImageView fx:id="pokemonIMG" fitHeight="200.0" fitWidth="205.0" pickOnBounds="true" preserveRatio="true">
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                            <image>
+                                <Image url="@../../../ImagenesPoke/pokeballGif.gif" />
+                            </image>
+                        </ImageView>
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="167.0" text="Ataque" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="ataqueVal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="53.0" prefWidth="167.0" text="?" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="167.0" text="Defensa" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="defensaVal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="53.0" prefWidth="167.0" text="?" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                        <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                            <children>
+                                <Label prefHeight="53.0" prefWidth="167.0" text="Vida" textFill="WHITE">
+                                    <font>
+                                        <Font name="Arial" size="24.0" />
+                                    </font>
+                                </Label>
+                        <Label fx:id="vidaVal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="53.0" prefWidth="167.0" text="?" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                        </Label>
+                            </children>
+                            <VBox.margin>
+                                <Insets top="20.0" />
+                            </VBox.margin>
+                        </HBox>
+                  <HBox alignment="CENTER" prefHeight="53.0" prefWidth="335.0">
+                     <children>
+                        <Label prefHeight="53.0" prefWidth="167.0" text="Velocidad" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="velocidadVal" alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="53.0" prefWidth="167.0" text="?" textFill="WHITE">
+                           <font>
+                              <Font name="Arial" size="24.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                        <Button fx:id="eleccionJugador" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="add-btn" stylesheets="@style.css" text="SELECCIONAR POKEMON" textFill="#828282">
+                            <VBox.margin>
+                                <Insets bottom="20.0" top="30.0" />
+                            </VBox.margin>
+                            <font>
+                                <Font name="System Bold" size="18.0" />
+                            </font>
+                        </Button>
+                    </children>
+               <styleClass>
+                  <String fx:value="shadow" />
+                  <String fx:value="chosen-random-poke" />
+               </styleClass>
+                </VBox>
+            </children>
+        </AnchorPane>
+    </children>
+</AnchorPane>
