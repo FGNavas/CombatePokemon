@@ -1,6 +1,7 @@
 package com.example.combatepokemon;
 
-import com.example.combatepokemon.Controllers.ControladorBase;
+import com.example.combatepokemon.Controllers.DataController;
+import com.example.combatepokemon.Interfaces.ControladorBase;
 import com.example.combatepokemon.Controllers.MaestroController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -10,6 +11,7 @@ import javafx.stage.Stage;
 import java.io.IOException;
 
 public class MainAplicacion extends Application {
+
     @Override
     public void start(Stage stage) throws IOException {
 
@@ -21,7 +23,8 @@ public class MainAplicacion extends Application {
         Scene scene = new Scene(fxmlLoader.load());
 
         ControladorBase controladorBase = fxmlLoader.getController();
-        controladorBase.setMaestroControler(maestroController);
+        controladorBase.setMaestroController(maestroController);
+
 
         stage.setTitle("Combate pokemon");
         stage.setScene(scene);

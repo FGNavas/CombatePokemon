@@ -1,6 +1,6 @@
 package com.example.combatepokemon.Controllers;
 
-import javafx.event.ActionEvent;
+import com.example.combatepokemon.Interfaces.ControladorBase;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
@@ -29,7 +29,7 @@ public class IntroController implements Initializable, ControladorBase {
 
 
     @Override
-    public void setMaestroControler(MaestroController maestro) {
+    public void setMaestroController(MaestroController maestro) {
         this.maestro= maestro;
     }
 

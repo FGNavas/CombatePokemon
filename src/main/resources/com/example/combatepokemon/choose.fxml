@@ -121,7 +121,7 @@
                         </Label>
                      </children>
                   </HBox>
-                        <Button fx:id="eleccionJugador" mnemonicParsing="false" prefHeight="50.0" prefWidth="300.0" styleClass="add-btn" stylesheets="@style.css" text="SELECCIONAR POKEMON" textFill="#828282">
+                        <Button fx:id="eleccionJugador" mnemonicParsing="false" onAction="#onSeleccionarPokemonClick" prefHeight="50.0" prefWidth="300.0" styleClass="add-btn" stylesheets="@style.css" text="SELECCIONAR POKEMON" textFill="#828282">
                             <VBox.margin>
                                 <Insets bottom="20.0" top="30.0" />
                             </VBox.margin>
