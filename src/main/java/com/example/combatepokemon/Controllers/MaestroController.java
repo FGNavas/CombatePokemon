@@ -3,6 +3,8 @@ package com.example.combatepokemon.Controllers;
 
 import com.example.combatepokemon.Interfaces.PokemonSeleccionadoListener;
 import com.example.combatepokemon.MainAplicacion;
+import com.example.combatepokemon.Modelo.Combate;
+import com.example.combatepokemon.Modelo.DataManager;
 import com.example.combatepokemon.Modelo.Jugador;
 import com.example.combatepokemon.Modelo.Pokemon;
 import javafx.fxml.FXMLLoader;
@@ -19,15 +21,16 @@ public class MaestroController implements PokemonSeleccionadoListener {
     public Jugador jugador2;
     protected List<Pokemon> listPokemon;
     private Stage stageActual;
-    private DataController dataController;
+    private DataManager dataManager;
 
-
+    private Combate combate;
     public MaestroController(Stage stage) {
         this.stageActual = stage;
-        jugador1 = new Jugador("",null);
-        jugador2 = new Jugador("",null);
-        dataController = new DataController();
-        listPokemon= dataController.getAllPokemon();
+        jugador1 = new Jugador("", null);
+        jugador2 = new Jugador("", null);
+        dataManager = new DataManager();
+        listPokemon = dataManager.getAllPokemon();
+
     }
 
     public void setStageActual(Stage stageActual) {
@@ -38,22 +41,25 @@ public class MaestroController implements PokemonSeleccionadoListener {
         return listPokemon;
     }
 
+    public void setListPokemon(List<Pokemon> listPokemon) {
+        this.listPokemon = listPokemon;
+    }
+
     public void registroJugadores(String nombre1, String nombre2) {
 
 
         if (nombre1.equals("")) {
-            nombre1 = "BLUE";
+            nombre1 = "RED";
         }
         if (nombre2.equals("") || nombre2.equals(nombre1)) {
-            nombre2 = "RED";
+            nombre2 = "BLUE";
         }
 
-        System.out.println(nombre1 + " " + nombre2);
+
         jugador1.setNombre(nombre1);
         jugador2.setNombre(nombre2);
 
-        System.out.println("Cantidad de Pokémon en la lista en MaestroController: " + listPokemon.size());
-        ventanaSeleccion(jugador1,listPokemon);
+        ventanaSeleccion(jugador1, listPokemon);
 
 
     }
@@ -67,7 +73,7 @@ public class MaestroController implements PokemonSeleccionadoListener {
 
             Parent vista = fxmlLoader.load();
             ChooseController controladorVentana = fxmlLoader.getController();
-
+            controladorVentana.setPokemonList(lista);
             controladorVentana.setMaestroController(this);
             controladorVentana.setPokemonSeleccionadoListener(this);
 
@@ -76,7 +82,6 @@ public class MaestroController implements PokemonSeleccionadoListener {
             stageActual.setScene(escena);
             stageActual.show();
 
-            controladorVentana.setPokemonList(lista);
             controladorVentana.setNombreJugador(jugador.getNombre());
 
         } catch (IOException e) {
@@ -86,19 +91,56 @@ public class MaestroController implements PokemonSeleccionadoListener {
 
     @Override
     public void onPokemonSeleccionado(Pokemon pokemon) {
-        if(jugador1.getPokemonSeleccionado()==null) {
-            System.out.println("pokemon para jugador 1");
+        if (jugador1.getPokemonSeleccionado() == null) {
+
             jugador1.setPokemonSeleccionado(pokemon);
-            System.out.println(jugador1.getPokemonSeleccionado().getNombre());
-        } else{
-            System.out.println("Selecciona pokemon para jugador 2");
+
+        } else {
+
             jugador2.setPokemonSeleccionado(pokemon);
-            System.out.println(jugador2.getPokemonSeleccionado().getNombre());
+
         }
-        if(jugador2.getPokemonSeleccionado()==null){
-            System.out.println("Entra aqui para que coja el jugador 2");
-            ventanaSeleccion(jugador2,listPokemon);
-            /** De aqui al combate */
+        if (jugador2.getPokemonSeleccionado() == null) {
+
+            ventanaSeleccion(jugador2, listPokemon);
+
+
+        }
+        if (jugador1.getPokemonSeleccionado() != null && jugador2.getPokemonSeleccionado() != null) {
+            inicioVentanaCombate(jugador1, jugador2);
         }
     }
+
+    private void inicioVentanaCombate(Jugador jugador1, Jugador jugador2) {
+
+
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(MainAplicacion.class.getResource("arena.fxml"));
+
+            Parent vista = fxmlLoader.load();
+            ArenaController arenaController = fxmlLoader.getController();
+            arenaController.setCombates(jugador1, jugador2);
+            arenaController.setMaestroController(this);
+
+            combate = new Combate(jugador1, jugador2);
+            arenaController.setCombate(combate);
+
+            Scene escena = new Scene(vista);
+            stageActual.setTitle("Combate: " + jugador1.getNombre() + " VS " + jugador2.getNombre());
+            stageActual.setScene(escena);
+            stageActual.show();
+
+            combatePokemon();
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+
+    }
+    private void combatePokemon() {
+        // Lógica para gestionar el combate utilizando la clase Combate
+        // Puedes llamar a métodos en la instancia de Combate según las acciones del usuario
+        // Por ejemplo: combate.realizarAtaque(), combate.realizarDefensa(), etc.
+    }
+
 }

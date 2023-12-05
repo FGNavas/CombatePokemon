@@ -5,6 +5,4 @@ import com.example.combatepokemon.Controllers.MaestroController;
 public interface ControladorBase {
     void setMaestroController(MaestroController maestro);
 
-
-
 }

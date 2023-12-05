@@ -2,16 +2,14 @@ package com.example.combatepokemon.Controllers;
 
 import com.example.combatepokemon.Interfaces.ControladorBase;
 import com.example.combatepokemon.Interfaces.PokemonSeleccionadoListener;
-import com.example.combatepokemon.Main.MyListener;
+import com.example.combatepokemon.Interfaces.MyListener;
 import com.example.combatepokemon.MainAplicacion;
 import com.example.combatepokemon.Modelo.Pokemon;
 import com.example.combatepokemon.Modelo.ConversionPokemon;
-import com.example.combatepokemon.Modelo.PokemonTipos;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.geometry.Insets;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -49,7 +47,7 @@ public class ChooseController implements Initializable, ControladorBase {
     @FXML
     private GridPane grid;
 
-    private List<Pokemon> pokemonList;
+    private List<Pokemon> pokemonList = new ArrayList<>();
 
     private int column = 0;
     private int row = 1;
@@ -66,25 +64,13 @@ public class ChooseController implements Initializable, ControladorBase {
     }
 
 
-
-
     @FXML
     private void onSeleccionarPokemonClick() {
         if (maestroController != null && getPokemonActual() != null) {
-            System.out.println("Entra porque no son nulos");
-
             maestroController.onPokemonSeleccionado(getPokemonActual());
-        } else {
-            System.out.println("algo es nulo");
-            if (maestroController == null) {
-                System.out.println("maestroController nulo");
-            }
-            if (getPokemonActual() == null) {
-                System.out.println("pokemonActual nulo");
-            }
         }
-    }
 
+    }
 
 
     public void setNombreJugador(String nombreJugador) {
@@ -94,64 +80,6 @@ public class ChooseController implements Initializable, ControladorBase {
 
     public void setPokemonList(List<Pokemon> pokemonList) {
         this.pokemonList = pokemonList;
-    }
-
-
-
-    protected Pokemon getPokemonActual() {
-        return pokemonActual;
-    }
-
-    protected void setPokemonActual(Pokemon pokemonActual) {
-        this.pokemonActual = pokemonActual;
-    }
-
-    private void generateTestData(MyListener callback) {
-   /*     Pokemon pikachu = new Pokemon(25, "Pikachu", PokemonTipos.ELECTRIC, 55, 40, 273, 90);
-        Pokemon charizard = new Pokemon(6, "Charizard", PokemonTipos.FIRE, 84, 78, 330, 100);
-        Pokemon blastoise = new Pokemon(9, "Blastoise", PokemonTipos.WATER, 83, 100, 400, 78);
-        Pokemon venusaur = new Pokemon(3, "Venusaur", PokemonTipos.GRASS, 82, 83, 390, 80);
-        Pokemon jolteon = new Pokemon(135, "Jolteon", PokemonTipos.ELECTRIC, 65, 60, 280, 130);
-        Pokemon alakazam = new Pokemon(65, "Alakazam", PokemonTipos.PSYCHIC, 50, 45, 300, 120);
-        Pokemon machamp = new Pokemon(68, "Machamp", PokemonTipos.FIGHTING, 130, 80, 340, 55);
-        Pokemon lapras = new Pokemon(131, "Lapras", PokemonTipos.ICE, 85, 80, 130, 410);
-        Pokemon aerodactyl = new Pokemon(142, "Aerodactyl", PokemonTipos.ROCK, 105, 65, 190, 130);
-        Pokemon prueba = new Pokemon(999, "Prueba", PokemonTipos.GRASS, 105, 65, 190, 130);
-        pokemonList.add(pikachu);
-        pokemonList.add(charizard);
-        pokemonList.add(blastoise);
-        pokemonList.add(venusaur);
-        pokemonList.add(jolteon);
-        pokemonList.add(alakazam);
-        pokemonList.add(machamp);
-        pokemonList.add(lapras);
-        pokemonList.add(aerodactyl);
-        pokemonList.add(prueba);*/
-
-        for (int i = 0; i < pokemonList.size(); i++) {
-            callback.onClickListener(pokemonList.get(i));
-        }
-    }
-
-    private void setChosenPokemon(Pokemon pokemon) {
-
-        nombrePokemon.setText(pokemon.getNombre());
-        logoPokeCH.setImage(pokeColores.logoTipo(pokemon));
-        pokemonIMG.setImage(pokeColores.imagenPokemon(pokemon));
-        ataqueVal.setText(String.valueOf(pokemon.getAtaque()));
-        defensaVal.setText(String.valueOf(pokemon.getDefensa()));
-        vidaVal.setText(String.valueOf(pokemon.getVida()));
-        velocidadVal.setText(String.valueOf(pokemon.getVelocidad()));
-
-        pokemonSeleccionado.setStyle("-fx-background-color: #" + pokeColores.colorAsociado(pokemon));
-
-        setPokemonActual(pokemon);
-
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Cantidad de Pokémon en la lista en ChooseController: " + pokemonList.size());
 
         generateTestData(pokemon -> {
 
@@ -190,10 +118,45 @@ public class ChooseController implements Initializable, ControladorBase {
 
         });
 
-        setChosenPokemon(pokemonList.get(0));
+    }
+
+
+    protected Pokemon getPokemonActual() {
+        return pokemonActual;
+    }
+
+    protected void setPokemonActual(Pokemon pokemonActual) {
+        this.pokemonActual = pokemonActual;
+    }
+
+    private void generateTestData(MyListener callback) {
+
+        for (int i = 0; i < pokemonList.size(); i++) {
+            callback.onClickListener(pokemonList.get(i));
+        }
+    }
+
+
+    private void setChosenPokemon(Pokemon pokemon) {
+
+        nombrePokemon.setText(pokemon.getNombre());
+        logoPokeCH.setImage(pokeColores.logoTipo(pokemon));
+        pokemonIMG.setImage(pokeColores.imagenPokemon(pokemon));
+        ataqueVal.setText(String.valueOf(pokemon.getAtaque()));
+        defensaVal.setText(String.valueOf(pokemon.getDefensa()));
+        vidaVal.setText(String.valueOf(pokemon.getVida()));
+        velocidadVal.setText(String.valueOf(pokemon.getVelocidad()));
+
+        pokemonSeleccionado.setStyle("-fx-background-color: #" + pokeColores.colorAsociado(pokemon));
+
+        setPokemonActual(pokemon);
 
     }
 
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+
+    }
 
     @Override
     public void setMaestroController(MaestroController maestro) {

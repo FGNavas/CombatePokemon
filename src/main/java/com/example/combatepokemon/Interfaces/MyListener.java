@@ -1,4 +1,4 @@
-package com.example.combatepokemon.Main;
+package com.example.combatepokemon.Interfaces;
 
 
 import com.example.combatepokemon.Modelo.Pokemon;

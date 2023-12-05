@@ -17,19 +17,19 @@
             <Image url="@../../../Campos/campoBatalla.png" />
          </image>
       </ImageView>
-      <ImageView fx:id="playerPkView" fitHeight="150.0" fitWidth="200.0" layoutX="26.0" layoutY="179.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="playerPkView" fitHeight="180.0" fitWidth="278.0" layoutX="26.0" layoutY="149.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../ImagenesPoke/999.gif" />
          </image>
       </ImageView>
-      <ImageView fx:id="enemypokeview" fitHeight="150.0" fitWidth="200.0" layoutX="346.0" layoutY="70.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="enemypokeview" fitHeight="205.0" fitWidth="244.0" layoutX="314.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
          <image>
             <Image url="@../../../ImagenesPoke/3.gif" />
          </image>
       </ImageView>
       <HBox layoutX="1.0" layoutY="340.0" prefHeight="100.0" prefWidth="591.0">
          <children>
-            <Label fx:id="textMensage" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="95.0" prefWidth="332.0" text="Mensajes texo">
+            <Label fx:id="textMensage" alignment="TOP_LEFT" contentDisplay="TOP" prefHeight="95.0" prefWidth="332.0" text="Mensajes texto">
                <padding>
                   <Insets left="22.0" />
                </padding>
@@ -37,9 +37,9 @@
                   <Font size="30.0" />
                </font>
             </Label>
-            <Button fx:id="attack" mnemonicParsing="false" prefHeight="93.0" prefWidth="98.0" text="Atacar" />
-            <Button fx:id="defense" mnemonicParsing="false" prefHeight="93.0" prefWidth="98.0" text="Defender" />
-            <Button fx:id="flee" mnemonicParsing="false" prefHeight="93.0" prefWidth="98.0" text="huir">
+            <Button fx:id="attack" mnemonicParsing="false" onAction="#handleAttack" prefHeight="93.0" prefWidth="98.0" text="Atacar" />
+            <Button fx:id="defense" mnemonicParsing="false" onAction="#handleDefense" prefHeight="93.0" prefWidth="98.0" text="Defender" />
+            <Button fx:id="flee" mnemonicParsing="false" onAction="#handleFlee" prefHeight="93.0" prefWidth="98.0" text="huir">
                <HBox.margin>
                   <Insets right="20.0" />
                </HBox.margin>

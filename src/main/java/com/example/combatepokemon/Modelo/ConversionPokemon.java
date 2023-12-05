@@ -39,7 +39,7 @@ public class ConversionPokemon {
         return tiposColores.get(pokemon.getTipo());
     }
 
-    public Image imagenPokemon(Pokemon pokemon){
+    public Image imagenPokemon(Pokemon pokemon) {
 
         Image image = new Image(getClass().getResourceAsStream("/ImagenesPoke/" + pokemon.getId_poke() + ".gif"));
 
@@ -47,9 +47,9 @@ public class ConversionPokemon {
     }
 
 
-    public Image logoTipo(Pokemon pokemon){
+    public Image logoTipo(Pokemon pokemon) {
         Image logo = new Image(getClass().getResourceAsStream("/TipoLogo/" + String.valueOf(pokemon.getTipo()).toLowerCase() + ".png"));
-        return  logo;
+        return logo;
     }
 
 }

@@ -1,16 +1,14 @@
-package com.example.combatepokemon.Controllers;
+package com.example.combatepokemon.Modelo;
 
 import com.example.combatepokemon.ExcepPersonalizadas.PokemonNotFoundEx;
 import com.example.combatepokemon.Interfaces.PokemonCRUD;
-import com.example.combatepokemon.Modelo.Pokemon;
-import com.example.combatepokemon.Modelo.PokemonTipos;
 
 
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DataController implements PokemonCRUD {
+public class DataManager implements PokemonCRUD {
     private Connection connection;
     private Statement statement;
 
@@ -36,7 +34,7 @@ public class DataController implements PokemonCRUD {
             "ataque, defensa, velocidad FROM pokemon ORDER BY id_numero; ";
     private List<Pokemon> pokemonList;
 
-    public DataController() {
+    public DataManager() {
         this.pokemonList = new ArrayList<>();
         try {
             connection = DriverManager.getConnection(RUTA+DEFAULT_DB);

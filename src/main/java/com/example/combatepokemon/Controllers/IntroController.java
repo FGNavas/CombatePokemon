@@ -27,17 +27,16 @@ public class IntroController implements Initializable, ControladorBase {
     }
 
 
-
     @Override
     public void setMaestroController(MaestroController maestro) {
-        this.maestro= maestro;
+        this.maestro = maestro;
     }
 
     public void nombresElegidos(MouseEvent mouseEvent) {
         String nombre1 = nombreJug1.getText();
         String nombre2 = nombreJug2.getText();
 
-        maestro.registroJugadores(nombre1,nombre2);
+        maestro.registroJugadores(nombre1.trim().toUpperCase(), nombre2.toUpperCase().trim());
 
     }
 }
