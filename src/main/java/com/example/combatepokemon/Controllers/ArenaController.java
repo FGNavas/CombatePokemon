@@ -61,7 +61,9 @@ public class ArenaController implements Initializable, ControladorBase {
             CombatController combatController = fxmlLoader.getController();
 
             combatController.setData(jug1, jug2);
-
+            combatController.setAttackListener(()->{
+                System.out.println("ataca");
+            });
 
             anchorPane.getChildren().add(combatePane);
             combatePane.setId(identificador);

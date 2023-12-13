@@ -25,7 +25,7 @@ public class itemPokeController implements Initializable {
 
     @FXML
     private void click(MouseEvent mouseEvent) {
-        myListener.onClickListener(pokemon);
+        myListener.onClickListener();
     }
 
     private Pokemon pokemon;
@@ -45,7 +45,7 @@ public class itemPokeController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        myListener = (data) -> {
+        myListener = () -> {
         };
     }
 }

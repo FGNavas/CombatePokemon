@@ -48,6 +48,7 @@ public class CombatController implements Initializable {
     @FXML
     private Button flee;
     private CombateListener combateListener;
+    private MyListener attackListener;
 
     private Pokemon pokemon1, pokemon2;
     private MyListener myListener;
@@ -70,20 +71,19 @@ public class CombatController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        myListener = (data) -> {
-        };
+
 
     }
 
-    public void setCombateListener(CombateListener listener) {
-        this.combateListener = listener;
+    public void setAttackListener(MyListener listener) {
+        this.attackListener = listener;
     }
     @FXML
     private void handleAttack(ActionEvent event) {
 
-        if (combateListener != null) {
-            combateListener.onAttackButtonClick();
-        }
+
+            attackListener.onClickListener();
+
     }
 
     @FXML

@@ -81,43 +81,50 @@ public class ChooseController implements Initializable, ControladorBase {
     public void setPokemonList(List<Pokemon> pokemonList) {
         this.pokemonList = pokemonList;
 
-        generateTestData(pokemon -> {
 
-            try {
+        for (int i = 0; i < pokemonList.size(); i++) {
+            addItem(pokemonList.get(i));
+        }
 
-                FXMLLoader fxmlLoader = new FXMLLoader();
-                fxmlLoader.setLocation(MainAplicacion.class.getResource("itemPoke.fxml"));
-                AnchorPane anchorPane = fxmlLoader.load();
-                itemPokeController itemController = fxmlLoader.getController();
 
-                itemController.setData(pokemon, data -> {
-                    setChosenPokemon(data);
-                });
 
-                if (column == 2) {
-                    column = 0;
-                    row++;
-                }
 
-                grid.add(anchorPane, column++, row); //(child,column,row)
-                //set grid width
-                grid.setMinWidth(Region.USE_COMPUTED_SIZE);
-                grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
-                grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-                //set grid height
-                grid.setMinHeight(Region.USE_COMPUTED_SIZE);
-                grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
-                grid.setMaxHeight(Region.USE_PREF_SIZE);
+    }
 
-                GridPane.setMargin(anchorPane, new Insets(10));
+    private void addItem(Pokemon pokemon) {
+        try {
 
-            } catch (IOException e) {
-                e.printStackTrace();
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(MainAplicacion.class.getResource("itemPoke.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+            itemPokeController itemController = fxmlLoader.getController();
+
+            itemController.setData(pokemon, () -> {
+                setChosenPokemon(pokemon);
+            });
+
+            if (column == 2) {
+                column = 0;
+                row++;
             }
 
-        });
+            grid.add(anchorPane, column++, row); //(child,column,row)
+            //set grid width
+            grid.setMinWidth(Region.USE_COMPUTED_SIZE);
+            grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
+            grid.setMaxWidth(Region.USE_PREF_SIZE);
 
+            //set grid height
+            grid.setMinHeight(Region.USE_COMPUTED_SIZE);
+            grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
+            grid.setMaxHeight(Region.USE_PREF_SIZE);
+
+            GridPane.setMargin(anchorPane, new Insets(10));
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -127,13 +134,6 @@ public class ChooseController implements Initializable, ControladorBase {
 
     protected void setPokemonActual(Pokemon pokemonActual) {
         this.pokemonActual = pokemonActual;
-    }
-
-    private void generateTestData(MyListener callback) {
-
-        for (int i = 0; i < pokemonList.size(); i++) {
-            callback.onClickListener(pokemonList.get(i));
-        }
     }
 
 
